@@ -7,7 +7,8 @@ entrylist = EntryList().from_csv('data/entries.csv')
 
 @app.route('/')
 def index():
-	return render_template('leaderboard.html',leaderboard=enumerate(entrylist.entries))
+    leaderboard = sorted(entrylist.entries, key=lambda entry: entry.total_wins,reverse=True)	
+    return render_template('leaderboard.html',leaderboard=enumerate(leaderboard))
 
 
 if __name__ == "__main__":

@@ -10,6 +10,9 @@
       <th>Team A</th>
       <th>Team B</th>
       <th>Team C</th>
+      <th>Losses</th>
+      <th>&Delta;</th>
+      <th>PF</th>
     </tr>
   </thead>
   <tbody>
@@ -17,10 +20,16 @@
     <tr>
       <th scope="row">{{ i+1 }}</th>
       <td>{{ entry.name }}</td>
-      <td>0</td>
-  {% for team in entry.teams %}
-      <td>{{ team }}</td>
+      <td>{{ entry.total_wins }}</td>
+  {% for team, wins in entry.teams.items() %}
+      <td>
+         <p>{{ team }}<br>
+         <small>{{ wins }}</small></p>
+      </td>
   {% endfor %}
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   {% endfor %}
   </tbody>
