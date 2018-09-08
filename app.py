@@ -1,14 +1,14 @@
 from flask import Flask,render_template
 app = Flask(__name__)
 
-from pool import EntryList
+from pool import Leaderboard
 
-entrylist = EntryList().from_csv('data/entries.csv')
+leaderboard = Leaderboard().from_csv('data/entries.csv','data/nfl_standings_week1.csv')
 
 @app.route('/')
 def index():
-    leaderboard = sorted(entrylist.entries, key=lambda entry: entry.total_wins,reverse=True)	
-    return render_template('leaderboard.html',leaderboard=enumerate(leaderboard))
+    entries = sorted(leaderboard.entries, key=lambda e: (-e.total_wins,e.total_losses,-e.diff))
+    return render_template('leaderboard.html',leaderboard=enumerate(entries))
 
 
 if __name__ == "__main__":

@@ -21,15 +21,15 @@
       <th scope="row">{{ i+1 }}</th>
       <td>{{ entry.name }}</td>
       <td>{{ entry.total_wins }}</td>
-  {% for team, wins in entry.teams.items() %}
+  {% for name, team in entry.teams.items() %}
       <td>
-         <p>{{ team }}<br>
-         <small>{{ wins }}</small></p>
+         <p>{{ name }}<br>
+         <small>{{ team.wins }} - {{ team.losses}}</small></p>
       </td>
   {% endfor %}
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{ entry.total_losses }}</td>
+      <td>{{ entry.diff }}</td>
+      <td>{{ entry.pf }}</td>
     </tr>
   {% endfor %}
   </tbody>
