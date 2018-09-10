@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 from pool import Leaderboard
 
-standings_file = 'data/nfl_standings_week1_2.csv'
+standings_file = 'data/nfl_standings_week1_3.csv'
 leaderboard = Leaderboard().from_csv('data/entries.csv',standings_file)
 
 @app.route('/')
