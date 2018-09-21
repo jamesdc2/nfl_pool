@@ -25,6 +25,7 @@ def standings():
 @app.route('/standings/update')
 def update_standings():
     teams = Standings().fetch(url)
+    leaderboard = Leaderboard().from_csv('data/entries.csv', teams)
     return jsonify({'status':'successsful'})
 
 if __name__ == "__main__":
