@@ -1,19 +1,19 @@
 from flask import Flask,render_template,jsonify
+from pool import Leaderboard, Standings
 import os
 import time
-app = Flask(__name__)
 
-from pool import Leaderboard,Standings
+app = Flask(__name__)
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+
 
 url = "https://www.pro-football-reference.com/years/2018/index.htm"
-standings_file = 'data/nfl_standings.csv'
 teams = Standings().fetch(url)
 leaderboard = Leaderboard().from_csv('data/entries.csv',teams)
 
 @app.route('/')
 def index():
-    statbuf = os.stat(standings_file)
-    last_mod = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(statbuf.st_mtime))
+    last_mod = teams.last_update.strftime("%c") 
 
     entries = sorted(leaderboard.entries, key=lambda e: (-e.total_wins,e.total_losses,-e.diff))
     return render_template('leaderboard.html',leaderboard=enumerate(entries),last_mod=last_mod)

@@ -1,4 +1,5 @@
 import csv
+import datetime
 from selectolax.parser import HTMLParser
 from urllib import request
 from pool import Team
@@ -59,6 +60,7 @@ class Standings:
         selector = "*[data-stat]:not(*.poptip):not(*[data-stat=onecell])"
 
         html = request.urlopen(url).read()
+        self.last_update = datetime.datetime.now()
 
         cells = HTMLParser(html).css(selector)
 
