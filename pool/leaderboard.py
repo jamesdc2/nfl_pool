@@ -4,8 +4,8 @@ from pool import Entry
 from pool import Standings
 
 class Leaderboard:
-    def from_csv(self,filename,standings_filename):
-        standings = Standings().from_csv(standings_filename)
+    def from_csv(self,filename,teams):
+        standings = teams
         self.entries = []
 
         with open(filename, 'r') as csv_file:
