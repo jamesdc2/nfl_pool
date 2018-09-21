@@ -1,4 +1,4 @@
-from flask import Flask,render_template,jsonify,g
+from flask import Flask,render_template,jsonify
 import os
 import time
 app = Flask(__name__)
